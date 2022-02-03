@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:photo_gallery/utils/api_manager.dart';
+import 'package:provider/provider.dart';
 import '/theme.dart';
+import 'controllers/photo_controller.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +13,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Photo Gallery',
-      debugShowCheckedModeBanner: false,
-      theme: theme(),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return MultiProvider(
+       providers: [
+        ChangeNotifierProvider<PhotoController>(
+          create: (context) => PhotoController(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Photo Gallery',
+        debugShowCheckedModeBanner: false,
+        theme: theme(),
+        home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      ),
     );
   }
 }
