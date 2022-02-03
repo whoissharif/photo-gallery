@@ -23,6 +23,7 @@ class _PhotoGridScreenState extends State<PhotoGridScreen> {
     (ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         elevation: 5,
+        duration: const Duration(seconds: 1),
         margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
         behavior: SnackBarBehavior.floating,
         content: Text(
