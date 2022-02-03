@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import '/views/widgets/photo_grid_item.dart';
 import '/resources/string_resources.dart';
 import '/views/widgets/no_photo_found.dart';
 import '/constants.dart';
 import '/controllers/photo_controller.dart';
 import '/model/photo.dart';
-import '/resources/urls.dart';
 import '/utils/api_manager.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +23,7 @@ class _PhotoGridScreenState extends State<PhotoGridScreen> {
     (ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         elevation: 5,
-        margin: const EdgeInsets.all(5),
+        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
         behavior: SnackBarBehavior.floating,
         content: Text(
           message,
@@ -94,28 +94,28 @@ class _PhotoGridScreenState extends State<PhotoGridScreen> {
                 child: CircularProgressIndicator(),
               )
             : provider.photoListLength > 0
-                ? GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 5,
-                      crossAxisSpacing: 5,
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 8,
+                        crossAxisSpacing: 8,
+                      ),
+                      physics: const BouncingScrollPhysics(),
+                      controller: _scrollController,
+                      itemCount: provider.photoListLength,
+                      itemBuilder: (_, index) {
+                        Photo photo = provider.getPhotoByIndex(index);
+                        return PhotoGridItem(
+                          photo: photo,
+                        );
+                      },
                     ),
-                    physics: const BouncingScrollPhysics(),
-                    controller: _scrollController,
-                    itemCount: provider.photoListLength,
-                    itemBuilder: (_, index) {
-                      Photo photo = provider.getPhotoByIndex(index);
-                      return Image.network(
-                        Urls.baseUrl + "/id/${photo.id}/1280/720",
-                        fit: BoxFit.cover,
-                      );
-                    },
                   )
                 : const NoPhotoFound(),
       ),
     );
   }
 }
-
-

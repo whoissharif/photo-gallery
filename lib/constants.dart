@@ -15,3 +15,8 @@ const kSnackBarTextStyle = TextStyle(
   color: Colors.grey,
   fontWeight: FontWeight.w700,
 );
+
+const kPhotoGridTileTextStyle = TextStyle(
+  color: Colors.white,
+  fontWeight: FontWeight.w500,
+);
