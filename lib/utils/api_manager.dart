@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
@@ -13,7 +12,7 @@ class APIManager {
     try {
       var response = await http.get(
         Uri.parse(
-          Urls.baseUrl + Urls.photoList + '?page=$page&limit=$limit',
+          Urls.photoList + '?page=$page&limit=$limit',
         ),
       );
       if (response.statusCode == 200) {
@@ -23,7 +22,6 @@ class APIManager {
           Photo photo = Photo.fromJson(e);
           photos.add(photo);
         });
-        log(photos[0].toJson().toString());
         return HTTPResponse<List<Photo>>(
           true,
           photos,
