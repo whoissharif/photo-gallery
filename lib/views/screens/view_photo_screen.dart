@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 import '/model/photo.dart';
 import '/resources/string_resources.dart';
 import '/resources/urls.dart';
 import 'package:wallpaper_manager_flutter/wallpaper_manager_flutter.dart';
-
+import 'package:http/http.dart' as http;
 import '../../constants.dart';
 
 class ViewPhotoScreen extends StatefulWidget {
@@ -17,6 +21,20 @@ class ViewPhotoScreen extends StatefulWidget {
 }
 
 class _ViewPhotoScreenState extends State<ViewPhotoScreen> {
+  Future<void> _share() async {
+    final imageurl = Urls.baseUrl +
+        "/id/${widget.photo.id}/" +
+        StringResources.fullViewPhotoResolution;
+    final uri = Uri.parse(imageurl);
+    final response = await http.get(uri);
+    final bytes = response.bodyBytes;
+    final temp = await getTemporaryDirectory();
+    final path =
+        '${temp.path}/image-${widget.photo.author}-${widget.photo.id}.jpg';
+    File(path).writeAsBytesSync(bytes);
+    await Share.shareFiles([path], text: 'Image Shared');
+  }
+
   Future<void> _setwallpaper(location) async {
     var file = await DefaultCacheManager().getSingleFile(Urls.baseUrl +
         "/id/${widget.photo.id}/" +
@@ -54,7 +72,9 @@ class _ViewPhotoScreenState extends State<ViewPhotoScreen> {
         elevation: 0,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              _share();
+            },
             icon: const Icon(Icons.share),
           ),
         ],

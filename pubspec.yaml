@@ -39,6 +39,8 @@ dependencies:
   cached_network_image: ^3.2.0
   wallpaper_manager_flutter: ^0.0.2
   flutter_cache_manager: ^3.1.2
+  path_provider: ^2.0.8
+  share_plus: ^3.0.4
 
 dev_dependencies:
   flutter_test:
