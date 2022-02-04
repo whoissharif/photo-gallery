@@ -6,12 +6,20 @@ class PhotoController extends ChangeNotifier {
   int _currentPage = 0;
   List<Photo> _photoList = [];
   bool _shouldRefresh = true;
+  bool _isCountTwo = true;
 
   bool get shouldRefresh => _shouldRefresh;
 
   setShouldRefresh(bool value) => _shouldRefresh = value;
 
   int get currentPage => _currentPage;
+
+  bool get isCountTow => _isCountTwo;
+
+   setIsCountTwo(val) {
+    _isCountTwo = val;
+    notifyListeners();
+  }
 
   setCurrentPage(int page) {
     _currentPage = page;

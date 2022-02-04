@@ -84,10 +84,24 @@ class _PhotoGridScreenState extends State<PhotoGridScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var photoProvider = Provider.of<PhotoController>(context, listen: true);
+
     return Scaffold(
       key: _globalKey,
       appBar: AppBar(
         title: Text(StringResources.appName),
+        actions: [
+          IconButton(
+            onPressed: () {
+              photoProvider.isCountTow
+                  ? photoProvider.setIsCountTwo(false)
+                  : photoProvider.setIsCountTwo(true);
+            },
+            icon: Icon(photoProvider.isCountTow
+                ? Icons.grid_view_rounded
+                : Icons.apps_rounded),
+          ),
+        ],
       ),
       body: Consumer<PhotoController>(
         builder: (_, provider, __) => provider.isLoading
@@ -98,9 +112,8 @@ class _PhotoGridScreenState extends State<PhotoGridScreen> {
                 ? Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: photoProvider.isCountTow ? 2 : 3,
                         childAspectRatio: 0.65,
                         mainAxisSpacing: 10,
                         crossAxisSpacing: 10,

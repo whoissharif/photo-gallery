@@ -9,6 +9,7 @@ const kSnackBarBgColor = Colors.white;
 const kAppBarTitleTextStyle = TextStyle(
   color: kAppBarTextColor,
   fontSize: 18,
+  fontWeight: FontWeight.bold,
 );
 
 const kSnackBarTextStyle = TextStyle(
