@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:photo_gallery/views/widgets/fading_four_loader.dart';
 import '/views/widgets/photo_grid_item.dart';
 import '/resources/string_resources.dart';
 import '/views/widgets/no_photo_found.dart';
@@ -106,7 +107,7 @@ class _PhotoGridScreenState extends State<PhotoGridScreen> {
       body: Consumer<PhotoController>(
         builder: (_, provider, __) => provider.isLoading
             ? const Center(
-                child: CircularProgressIndicator(),
+                child: FadingFourLoader(),
               )
             : provider.photoListLength > 0
                 ? Padding(

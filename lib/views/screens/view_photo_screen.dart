@@ -1,15 +1,15 @@
 import 'dart:io';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:path_provider/path_provider.dart';
+import '/views/widgets/fading_four_loader.dart';
+import '/views/widgets/set_wallpaper_button.dart';
 import '/views/widgets/wallpaper_options.dart';
 import 'package:share_plus/share_plus.dart';
 import '/model/photo.dart';
 import '/resources/string_resources.dart';
 import '/resources/urls.dart';
-import 'package:http/http.dart' as http;
-import '../../constants.dart';
 
 class ViewPhotoScreen extends StatefulWidget {
   final Photo photo;
@@ -58,16 +58,16 @@ class _ViewPhotoScreenState extends State<ViewPhotoScreen> {
                   "/id/${widget.photo.id}/" +
                   StringResources.fullViewPhotoResolution,
               progressIndicatorBuilder: (context, url, downloadProgress) =>
-                  Padding(
-                padding: const EdgeInsets.all(40.0),
+                  const Padding(
+                padding: EdgeInsets.all(40.0),
                 child: Center(
-                    child: CircularProgressIndicator(
-                        value: downloadProgress.progress)),
+                  child: FadingFourLoader(),
+                ),
               ),
               errorWidget: (context, url, error) => const Icon(Icons.error),
               fit: BoxFit.cover,
               height: double.infinity,
-              // width: double.infinity,
+              width: double.infinity,
               alignment: Alignment.center,
             ),
           ),
@@ -77,7 +77,6 @@ class _ViewPhotoScreenState extends State<ViewPhotoScreen> {
             right: 40,
             child: InkWell(
               onTap: () {
-                // _setwallpaper(WallpaperManagerFlutter.HOME_SCREEN);
                 showModalBottomSheet(
                     context: context,
                     shape: const RoundedRectangleBorder(
@@ -93,22 +92,7 @@ class _ViewPhotoScreenState extends State<ViewPhotoScreen> {
                       );
                     });
               },
-              child: Container(
-                height: 50,
-                alignment: Alignment.center,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                child: Center(
-                  child: Text(
-                    StringResources.setAsWallpaperText,
-                    style: kSetAsWallpaperTextStyle,
-                  ),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(.5),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
+              child: const SetWallpaperButton(),
             ),
           ),
         ],
@@ -116,4 +100,3 @@ class _ViewPhotoScreenState extends State<ViewPhotoScreen> {
     );
   }
 }
-
