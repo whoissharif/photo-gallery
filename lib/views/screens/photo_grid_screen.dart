@@ -101,8 +101,9 @@ class _PhotoGridScreenState extends State<PhotoGridScreen> {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 8,
+                        childAspectRatio: 0.65,
+                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 10,
                       ),
                       physics: const BouncingScrollPhysics(),
                       controller: _scrollController,

@@ -2,13 +2,12 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:path_provider/path_provider.dart';
+import '/views/widgets/wallpaper_options.dart';
 import 'package:share_plus/share_plus.dart';
 import '/model/photo.dart';
 import '/resources/string_resources.dart';
 import '/resources/urls.dart';
-import 'package:wallpaper_manager_flutter/wallpaper_manager_flutter.dart';
 import 'package:http/http.dart' as http;
 import '../../constants.dart';
 
@@ -33,34 +32,6 @@ class _ViewPhotoScreenState extends State<ViewPhotoScreen> {
         '${temp.path}/image-${widget.photo.author}-${widget.photo.id}.jpg';
     File(path).writeAsBytesSync(bytes);
     await Share.shareFiles([path], text: 'Image Shared');
-  }
-
-  Future<void> _setwallpaper(location) async {
-    var file = await DefaultCacheManager().getSingleFile(Urls.baseUrl +
-        "/id/${widget.photo.id}/" +
-        StringResources.fullViewPhotoResolution);
-    try {
-      WallpaperManagerFlutter().setwallpaperfromFile(file, location);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          elevation: 5,
-          duration: const Duration(seconds: 1),
-          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-          behavior: SnackBarBehavior.floating,
-          content: Text(StringResources.wallpaperUpdateSuccessMessage),
-        ),
-      );
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          elevation: 5,
-          duration: const Duration(seconds: 1),
-          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-          behavior: SnackBarBehavior.floating,
-          content: Text(StringResources.wallpaperUpdateFailureMessage),
-        ),
-      );
-    }
   }
 
   @override
@@ -106,7 +77,21 @@ class _ViewPhotoScreenState extends State<ViewPhotoScreen> {
             right: 40,
             child: InkWell(
               onTap: () {
-                _setwallpaper(WallpaperManagerFlutter.HOME_SCREEN);
+                // _setwallpaper(WallpaperManagerFlutter.HOME_SCREEN);
+                showModalBottomSheet(
+                    context: context,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15),
+                      ),
+                    ),
+                    builder: (c) {
+                      return WallpaperOpitons(
+                        context: c,
+                        photo: widget.photo,
+                      );
+                    });
               },
               child: Container(
                 height: 50,
@@ -131,3 +116,4 @@ class _ViewPhotoScreenState extends State<ViewPhotoScreen> {
     );
   }
 }
+

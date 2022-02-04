@@ -6,4 +6,7 @@ class StringResources {
   static String setAsWallpaperText = 'Set as Wallpaper';
   static String wallpaperUpdateSuccessMessage = 'Wallpaper Updated';
   static String wallpaperUpdateFailureMessage = 'Error Setting Wallpaper';
+  static String setAsHomescreen = 'Set as Home screen';
+  static String setAsLockcreen = 'Set as Lock screen';
+  static String setBoth = 'Set Both';
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 const kTextColor = Color(0xFF757575);
 const kScaffoldBackgroundColor = Colors.white;
@@ -24,5 +23,9 @@ const kPhotoGridTileTextStyle = TextStyle(
 
 const kSetAsWallpaperTextStyle = TextStyle(
   color: Colors.white,
+  fontWeight: FontWeight.bold,
+);
+
+const kWallpaperOptionTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
