@@ -13,12 +13,19 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  # for making http request
   http: ^0.13.4
+  # for state management
   provider: ^6.0.2
+  # for keep network images in the cache directory
   cached_network_image: ^3.2.0
+  # to set device wallpaper
   wallpaper_manager_flutter: ^0.0.2
+  # to download and cache files in the cache directory of the app
   flutter_cache_manager: ^3.1.2
+  # for finding commonly used locations on the filesystem
   path_provider: ^2.0.8
+  # for share photo with others
   share_plus: ^3.0.4
 
 dev_dependencies:
