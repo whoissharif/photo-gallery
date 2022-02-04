@@ -1,13 +1,10 @@
 # Photo Galary
-<table>
-  <tr>
-    <td>
-      <img src="assets/images/logo.png" height=70 align="left"> 
-    <p>A photo gallery app using flutter where you can find a huge collection of photos. You can set a photo as your phone wallpaper and also share photos with your friends.
-      </p>
-    </td>
-  </tr>
-</table>
+ <p>
+    <img src="assets/images/logo.png" height=45 align="left"> 
+    <p>A photo gallery app using flutter and https://picsum.photos/ API where you can find a huge collection of photos. You can set a photo as your phone wallpaper and also share photos with your friends.
+    </p>
+ </p>
+ <br>
 <table>
   <tr>
     <td><img src="/assets/images/screenshots/grid_2.jpg" width=270 ></td>
@@ -33,6 +30,7 @@
 ## Project Environment:
 ```
 Flutter 2.8.1 • channel stable
-Tools • Dart 2.15.1
+Dart 2.15.1
+Visual Studio Code 1.64.0
 ```
 
