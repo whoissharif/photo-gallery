@@ -1,4 +1,4 @@
-# Photo Galary
+# Photo Gallery
  <p>
     <img src="assets/images/logo.png" height=45 align="left"> 
     <p>A photo gallery app using flutter and https://picsum.photos/ API where you can find a huge collection of photos. You can set a photo as your phone wallpaper and also share photos with your friends.
