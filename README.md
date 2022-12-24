@@ -4,7 +4,11 @@
     <p>A photo gallery app using flutter and https://picsum.photos/ API where you can find a huge collection of photos. You can set a photo as your phone wallpaper and also share photos with your friends.
     </p>
  </p>
+ <img src="assets/images/git_cover.jpg"> 
  <br>
+ <!---
+ ## Screenshots
+ ```
 <table>
   <tr>
     <td><img src="/assets/images/screenshots/grid_2.jpg" width=270 ></td>
@@ -16,6 +20,7 @@
     <td><img src="/assets/images/screenshots/share_photo.jpg" width=270 ></td>
   </tr>
  </table>
+-->
 
 ## Features
 ```
